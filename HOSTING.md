@@ -1,85 +1,57 @@
-# Private GitHub repo + free hosting (Cloudflare Pages)
+# Hosting the website for free with GitHub Pages
 
-The whole `Birthday` folder is one git repository (branch `main`, about 1.2 GB) and is committed on
-your Mac. Only the `Website/` folder gets published as the site; the magazine sources, print PDFs
-and original photos stay private in the repo.
+Repo: https://github.com/AnkanSaha18/20th-Birthday-of-Athay
+Live site (after setup): **https://ankansaha18.github.io/20th-Birthday-of-Athay/**
+Magazine reader: https://ankansaha18.github.io/20th-Birthday-of-Athay/magazine.html
 
-Why Cloudflare Pages: GitHub Pages needs a paid plan for private repos, and it can't publish a
-sub-folder like `Website/` without extra setup. Cloudflare Pages is free, works with private repos,
-redeploys on every push, and can lock the site so only the people you choose can open it.
+GitHub Pages is free on **public** repos (private repos need GitHub Pro). A workflow in
+`.github/workflows/pages.yml` publishes only the `Website/` folder every time you push to `main`.
+
+> Before you go public: anyone on the internet can then browse the whole repo, including the
+> original photos in `Images/`, the family photos, the love letter and the print PDFs, and download them.
+> If that's not OK, keep the repo private and use the Cloudflare Pages option at the bottom instead (also free).
 
 ---
 
-## Part 1 · Create the private repository on GitHub
+## Step 1 · Push the latest changes (GitHub Desktop)
 
-1. Sign in at https://github.com and open https://github.com/new
-2. Repository name: e.g. `athay-20`
-3. Choose **Private**
-4. Leave "Add a README", ".gitignore" and "license" **unticked** (the folder already has them)
-5. Click **Create repository** and keep the page open; it shows your repo URL,
-   e.g. `https://github.com/<your-username>/athay-20.git`
+1. Open **GitHub Desktop**; the repo `20th-Birthday-of-Athay` is selected.
+2. Under **History** you'll see the commit "Deploy website with GitHub Pages…" already made.
+3. Click **Push origin** (top bar).
 
-## Part 2 · Push the folder (Terminal on your Mac)
+## Step 2 · Make the repository public
 
-Large files need a bigger HTTP buffer, so run these once:
+1. Open https://github.com/AnkanSaha18/20th-Birthday-of-Athay
+2. Click **Settings** (top tab, gear icon).
+3. Scroll to the very bottom: **Danger Zone** → **Change repository visibility** → **Change visibility**.
+4. Choose **Make public**, confirm the warnings and type the repo name when asked.
 
-```bash
-cd ~/Desktop/Anno/Birthday
-git config http.postBuffer 524288000
-git remote add origin https://github.com/<your-username>/athay-20.git
-git push -u origin main
-```
+## Step 3 · Turn on GitHub Pages
 
-- When asked for a **username**, type your GitHub username.
-- When asked for a **password**, paste a **personal access token**, not your GitHub password:
-  GitHub → your photo → Settings → Developer settings → Personal access tokens → Tokens (classic)
-  → Generate new token → tick **repo** → Generate → copy it.
-- The first push uploads about 1.2 GB, so it can take a while on slow Wi-Fi.
-  GitHub will print a warning that a few print PDFs are over 50 MB. That's fine; the limit is 100 MB.
+1. Still in **Settings**, click **Pages** in the left sidebar.
+2. Under **Build and deployment** → **Source**, choose **GitHub Actions** (not "Deploy from a branch").
+   Nothing else to fill in.
 
-(Prefer clicking? Install GitHub Desktop → File → Add Local Repository → choose the `Birthday` folder
-→ Publish repository → keep "Keep this code private" ticked.)
+## Step 4 · Run the deploy
 
-## Part 3 · Host it free on Cloudflare Pages
+1. Click the **Actions** tab of the repo.
+2. Click **Deploy website to GitHub Pages** on the left → **Run workflow** → **Run workflow**.
+   (From now on, every push to `main` deploys automatically.)
+3. Wait for the green tick (about a minute); the run page shows the site link.
+4. Open **https://ankansaha18.github.io/20th-Birthday-of-Athay/**, tap the seal, sound on.
 
-1. Create a free account at https://dash.cloudflare.com/sign-up
-2. In the dashboard: **Workers & Pages** → **Create** → **Pages** tab → **Connect to Git**
-3. Click **Connect GitHub**, choose **Only select repositories** → `athay-20` → **Install & Authorize**
-4. Select `athay-20` → **Begin setup**, then fill in:
-   - Project name: `athay-20` (this becomes `athay-20.pages.dev`; pick something sweet, it must be unique)
-   - Production branch: `main`
-   - Framework preset: **None**
-   - Build command: *(leave empty)*
-   - Build output directory: `Website`
-5. Click **Save and Deploy**. After a minute or two the site is live at
-   `https://<project-name>.pages.dev`
+If you get a 404 right after the first deploy, wait a minute and refresh.
 
-Every time you `git push`, Cloudflare redeploys automatically.
+## Updating later
 
-## Part 4 · (Recommended) Lock it so only she and you can open it
+Edit the files → GitHub Desktop → write a summary → **Commit to main** → **Push origin**.
+The site updates within a minute or two.
 
-Without this, anyone who has the link can see the site. It's hidden from search engines, but a link can be forwarded.
+---
 
-1. Cloudflare dashboard → your Pages project → **Settings** → **General** → **Access policy** → **Enable**
-   (first time, it asks you to pick a free Zero Trust team name and the **Free** plan; it may ask for a card
-   but the Free plan, up to 50 people, costs nothing)
-2. Edit the policy: Action **Allow** · Include → **Emails** → her email address and yours
-3. Save. Now when she opens the link she enters her email, gets a 6-digit code, and she's in.
+## If you'd rather keep everything private (also free): Cloudflare Pages
 
-Note: by default the Access policy protects preview links. To protect the main `*.pages.dev` address too,
-open Zero Trust → Access → Applications → edit the app and add the main domain `<project-name>.pages.dev`.
-
-## Updating the site later
-
-```bash
-cd ~/Desktop/Anno/Birthday
-git add -A
-git commit -m "Update"
-git push
-```
-
-## Alternative: Netlify (also free)
-
-https://app.netlify.com → Add new site → Import an existing project → GitHub → `athay-20`
-→ Base directory: `Website` · Build command: empty · Publish directory: `Website` → Deploy.
-Netlify's password protection needs a paid plan, so the link itself is the key.
+1. Keep the repo **private**.
+2. https://dash.cloudflare.com → **Workers & Pages** → **Create** → **Pages** → **Connect to Git** → choose this repo.
+3. Framework preset **None**, build command empty, **Build output directory: `Website`** → **Save and Deploy**.
+4. Live at `https://<project-name>.pages.dev`. Optional: project **Settings → Access policy** to allow only her email and yours.

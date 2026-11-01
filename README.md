@@ -10,4 +10,4 @@ Everything made for Athay Saha's 20th birthday (31 · 10 · 2026), with love fro
 | `Attempt 7/` | The 20-page print magazine: editable source and print-ready PDFs/JPGs |
 | `Images/` | The original photos (never edited) |
 
-Hosting steps are in [HOSTING.md](HOSTING.md). Website details are in [Website/README.md](Website/README.md).
+Live site: https://ankansaha18.github.io/20th-Birthday-of-Athay/ (deployed by `.github/workflows/pages.yml`). Hosting steps are in [HOSTING.md](HOSTING.md). Website details are in [Website/README.md](Website/README.md).
