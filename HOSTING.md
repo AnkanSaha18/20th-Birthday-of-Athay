@@ -49,6 +49,32 @@ The site updates within a minute or two.
 
 ---
 
+## Going private and back to public (re-deploying)
+
+**What happens:** on a free GitHub account, Pages only works for public repos. The moment you switch the
+repo to **private**, GitHub unpublishes the site and the link shows a 404. Nothing is deleted: the files,
+the workflow and the history all stay in the repo.
+
+**Turning it back on:** making the repo public again does *not* always bring the site back by itself,
+so do this every time:
+
+1. Repo → **Settings** → bottom **Danger Zone** → **Change visibility** → **Make public**.
+2. **Settings** → **Pages** → under **Build and deployment** → **Source**: make sure it says
+   **GitHub Actions** (choose it again if it's blank or says "Deploy from a branch").
+3. **Actions** tab → **Deploy website to GitHub Pages** (left side) → **Run workflow** → **Run workflow**.
+4. Wait for the green tick, then open https://ankansaha18.github.io/20th-Birthday-of-Athay/
+   (same address as before). If it still shows 404, wait a couple of minutes and refresh.
+
+**Notes**
+- Every push to `main` also re-deploys automatically, so pushing any small change does the same as step 3.
+- If you see "Deploy website to GitHub Pages" failing with a Pages/permissions error, step 2 was skipped.
+- Google: while the site is down, Google may drop it from search results. After it's back, open
+  Search Console → **URL inspection** → paste the URL → **Request indexing**. The Google verification
+  file stays in the `Website` folder, so you don't need to verify again.
+- Want the files private *and* the site online? Use the Cloudflare Pages option below instead.
+
+---
+
 ## If you'd rather keep everything private (also free): Cloudflare Pages
 
 1. Keep the repo **private**.
