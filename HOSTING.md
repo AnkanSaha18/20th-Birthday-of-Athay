@@ -55,3 +55,30 @@ The site updates within a minute or two.
 2. https://dash.cloudflare.com → **Workers & Pages** → **Create** → **Pages** → **Connect to Git** → choose this repo.
 3. Framework preset **None**, build command empty, **Build output directory: `Website`** → **Save and Deploy**.
 4. Live at `https://<project-name>.pages.dev`. Optional: project **Settings → Access policy** to allow only her email and yours.
+
+---
+
+## Getting it on Google Search
+
+The pages now carry a search title and description built around "20th Birthday of Athay", a share preview
+image (`Website/assets/og-image.jpg`), a canonical URL, structured data, icons and `Website/sitemap.xml`.
+
+1. Push the latest commit in GitHub Desktop and wait for the green tick in **Actions**.
+2. Open https://search.google.com/search-console and sign in with your Google account.
+3. **Add property** → choose **URL prefix** (right side) → paste
+   `https://ankansaha18.github.io/20th-Birthday-of-Athay/` → **Continue**.
+4. Verify ownership with **HTML file**:
+   - Download the file it offers (named like `google1a2b3c4d5e.html`).
+   - Put it inside the `Website` folder (next to `index.html`), then commit and push in GitHub Desktop.
+   - Wait for the deploy to finish, check that
+     `https://ankansaha18.github.io/20th-Birthday-of-Athay/google1a2b3c4d5e.html` opens, then click **Verify**.
+5. Left menu → **Sitemaps** → enter `sitemap.xml` → **Submit**.
+6. Top search bar (**URL inspection**) → paste the site URL → **Request indexing**.
+   Do the same for `https://ankansaha18.github.io/20th-Birthday-of-Athay/magazine.html`.
+
+Google usually lists a new page within a few days, sometimes a week or two; nobody can force the exact
+day. Then searching **20th Birthday of Athay** should bring it up. Sharing the link anywhere public
+(e.g. an Instagram bio or a post) helps Google find it faster.
+
+To check the link-preview card (WhatsApp / Messenger / Facebook), paste the URL into
+https://developers.facebook.com/tools/debug/ → **Scrape Again**.

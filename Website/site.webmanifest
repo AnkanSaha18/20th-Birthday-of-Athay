@@ -1,0 +1,12 @@
+{
+  "name": "20th Birthday of Athay",
+  "short_name": "Athay · 20",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#14182b",
+  "theme_color": "#14182b",
+  "icons": [
+    { "src": "assets/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

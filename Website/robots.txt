@@ -1,0 +1,5 @@
+# Note: on a github.io project site Google reads robots.txt from the domain root,
+# so this file is informational; the sitemap is submitted in Search Console instead.
+User-agent: *
+Allow: /
+Sitemap: https://ankansaha18.github.io/20th-Birthday-of-Athay/sitemap.xml
