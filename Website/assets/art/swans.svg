@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+<g stroke="#B08A3E" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round" fill="#FFFBF5">
+<g id="sw"><path d="M196,236 C196,170 150,150 136,110 C124,76 150,52 176,62 C196,70 196,96 186,104"  fill="none" stroke-width="16"/>
+<path d="M196,236 C196,170 150,150 136,110 C124,76 150,52 176,62 C196,70 196,96 186,104"  fill="none" stroke="#FFFBF5" stroke-width="11"/>
+<path d="M186,104 l14,10 l-16,0Z" fill="#E9A86A"/>
+<circle cx="174" cy="76" r="2.6" fill="#5A4426" stroke="none"/>
+<path d="M200,262 C140,270 70,262 40,222 C80,230 104,214 120,196 C150,214 180,222 200,214Z"/>
+<path d="M70,226 C90,224 110,214 124,204 M90,240 C116,236 140,226 156,214" fill="none" stroke-width="1.6"/></g>
+<use href="#sw" transform="translate(400,0) scale(-1,1)"/>
+<path d="M200,104 C186,84 160,92 170,114 C178,130 200,144 200,144 C200,144 222,130 230,114 C240,92 214,84 200,104Z" fill="#F2C3C5"/>
+<path d="M30,270 Q110,284 200,272 Q290,284 370,270" fill="none" stroke-width="1.8"/>
+<path d="M60,286 Q130,296 200,288 Q270,296 340,286" fill="none" stroke-width="1.2"/>
+</g></svg>

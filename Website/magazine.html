@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Magazine · Athay · The Twentieth Issue</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#14182b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='88'%3E%F0%9F%92%9B%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  body{background:radial-gradient(1000px 600px at 50% 30%,#2a2f52 0%,var(--night) 70%);color:#f5ecdc;min-height:100svh;display:flex;flex-direction:column}
+  .mag-top{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:16px var(--gutter);flex-wrap:wrap}
+  .mag-top a,.mag-top .count{font-family:var(--sans);font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-hi);text-decoration:none}
+  .mag-top h1{margin:0;font-family:var(--display);font-weight:400;font-size:clamp(1.2rem,2.6vw,1.8rem);text-align:center;flex:1}
+  .mag-top h1 .script{font-size:1.3em;background:var(--gold-grad);background-size:220%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 7s linear infinite}
+  .stage{flex:1;display:flex;align-items:center;justify-content:center;gap:12px;padding:8px 8px 0;position:relative}
+  .nav{border:1px solid rgba(233,205,139,.5);background:rgba(20,24,43,.6);color:var(--gold-hi);width:48px;height:48px;border-radius:50%;font-size:1.6rem;line-height:1;flex:0 0 auto;transition:background .3s}
+  .nav:hover{background:rgba(233,205,139,.15)}
+  .nav:disabled{opacity:.25;cursor:default}
+
+  /* --- desktop: open book with turning leaf --- */
+  .book{--pw:min(calc((100vw - 170px) / 2), calc((100svh - 230px) * 8 / 11));position:relative;width:calc(var(--pw) * 2);height:calc(var(--pw) * 11 / 8);perspective:2600px}
+  .book .pg{position:absolute;top:0;width:50%;height:100%;object-fit:cover;background:#fffaf2;box-shadow:0 30px 60px -20px rgba(0,0,0,.7)}
+  .book .pg.l{left:0}.book .pg.r{right:0}
+  .book .pg.empty{visibility:hidden}
+  .book::after{content:"";position:absolute;left:50%;top:0;bottom:0;width:40px;transform:translateX(-50%);background:linear-gradient(90deg,transparent,rgba(0,0,0,.18) 45%,rgba(0,0,0,.25) 50%,rgba(0,0,0,.18) 55%,transparent);pointer-events:none;z-index:4}
+  .book.cover-only::after,.book.back-only::after{display:none}
+  .leaf{position:absolute;top:0;width:50%;height:100%;transform-style:preserve-3d;z-index:5;display:none}
+  .leaf.fwd{left:50%;transform-origin:0 50%}
+  .leaf.back{left:0;transform-origin:100% 50%}
+  .leaf img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:#fffaf2}
+  .leaf img.b{transform:rotateY(180deg)}
+  .leaf.go{display:block}
+  .leaf.fwd.go{animation:turnF .9s cubic-bezier(.45,.05,.35,1) forwards}
+  .leaf.back.go{animation:turnB .9s cubic-bezier(.45,.05,.35,1) forwards}
+  @keyframes turnF{to{transform:rotateY(-180deg)}}
+  @keyframes turnB{to{transform:rotateY(180deg)}}
+  .leaf .shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.25),transparent 40%);opacity:0;animation:shade .9s forwards}
+  @keyframes shade{50%{opacity:1}}
+
+  /* --- phone: one page at a time --- */
+  .single{display:none;position:relative;width:min(calc(100vw - 24px),calc((100svh - 220px) * 8 / 11));aspect-ratio:8/11}
+  .single img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;box-shadow:0 24px 50px -18px rgba(0,0,0,.8);transition:transform .55s var(--ease),opacity .55s}
+  .single img.out-l{transform:translateX(-30%) rotate(-4deg);opacity:0}
+  .single img.out-r{transform:translateX(30%) rotate(4deg);opacity:0}
+  @media (max-width:760px){
+    .book,.stage>.nav{display:none}
+    .single{display:block}
+  }
+
+  .thumbs{display:flex;gap:8px;overflow-x:auto;padding:16px var(--gutter) 6px;scrollbar-width:thin;scrollbar-color:var(--gold) transparent}
+  .thumbs button{flex:0 0 auto;border:2px solid transparent;padding:0;background:none;border-radius:3px;opacity:.6;transition:opacity .3s,border-color .3s}
+  .thumbs button.on{border-color:var(--gold-hi);opacity:1}
+  .thumbs img{height:74px;width:auto;aspect-ratio:8/11;object-fit:cover;display:block}
+  .mag-foot{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;padding:12px 16px 22px}
+  .mag-foot .btn{text-decoration:none}
+  .hint{text-align:center;font-family:var(--sans);font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:#cdbb9a;margin:6px 0 0}
+</style>
+</head>
+<body>
+  <header class="mag-top">
+    <a href="index.html">← Back to her website</a>
+    <h1>The <span class="script">Magazine</span></h1>
+    <span class="count" id="count">Cover</span>
+  </header>
+
+  <div class="stage">
+    <button class="nav" id="prev" aria-label="Previous page">‹</button>
+    <div class="book" id="book">
+      <img class="pg l" id="L" alt="">
+      <img class="pg r" id="R" alt="">
+      <div class="leaf" id="leaf"><img class="f" alt=""><img class="b" alt=""><span class="shade"></span></div>
+    </div>
+    <div class="single" id="single"><img id="S" alt=""></div>
+    <button class="nav" id="next" aria-label="Next page">›</button>
+  </div>
+  <p class="hint">tap the edges or swipe to turn the page</p>
+
+  <nav class="thumbs" id="thumbs" aria-label="Pages"></nav>
+
+  <div class="mag-foot">
+    <a class="btn ghost" href="magazine/ATHAY_The_Twentieth_Issue.pdf" target="_blank" rel="noopener">Open the PDF</a>
+    <a class="btn ghost" href="magazine/ATHAY_The_Twentieth_Issue.pdf" download>Download the PDF</a>
+    <a class="btn ghost" href="index.html">Back to the website</a>
+  </div>
+
+<button id="music" class="music" aria-label="Play or pause the music"><span></span><span></span><span></span><span></span></button>
+<audio id="song" src="assets/music.m4a" loop preload="auto"></audio>
+<script>
+(() => {
+  // music carries on from the main page (browsers need one tap before sound can start)
+  const song = document.getElementById('song'), btn = document.getElementById('music');
+  let saved = { t: 0, on: true };
+  try { saved = JSON.parse(sessionStorage.getItem('song')) || saved; } catch (e) {}
+  song.addEventListener('loadedmetadata', () => { if (saved.t) song.currentTime = saved.t % (song.duration || 1e9); }, { once: true });
+  const play = () => song.play().then(() => btn.classList.add('playing')).catch(() => {});
+  if (saved.on) {
+    play();
+    addEventListener('pointerdown', function first() { if (song.paused) play(); removeEventListener('pointerdown', first); }, { once: true });
+  }
+  btn.addEventListener('click', e => { e.stopPropagation(); song.paused ? play() : (song.pause(), btn.classList.remove('playing')); saved.on = !song.paused; });
+  addEventListener('pagehide', () => { try { sessionStorage.setItem('song', JSON.stringify({ t: song.currentTime, on: !song.paused })); } catch (e) {} });
+})();
+(() => {
+  const N = 20;
+  const src = i => i ? `magazine/pages/${String(i).padStart(2, '0')}.jpg` : '';
+  // spreads: cover alone on the right, then 2-3, 4-5 … 18-19, back cover alone on the left
+  const spreads = [[0, 1]];
+  for (let i = 2; i < N; i += 2) spreads.push([i, i + 1]);
+  spreads.push([N, 0]);
+
+  const $ = s => document.querySelector(s);
+  const book = $('#book'), L = $('#L'), R = $('#R'), leaf = $('#leaf'), lf = $('.f', leaf), lb = $('.b', leaf);
+  const S = $('#S'), count = $('#count'), thumbs = $('#thumbs');
+  const narrow = matchMedia('(max-width:760px)');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let sp = 0, page = 1, busy = false;
+
+  // preload every page so turns never flash white
+  for (let i = 1; i <= N; i++) { const im = new Image(); im.src = src(i); }
+
+  function setImg(el, i) { el.classList.toggle('empty', !i); if (i) el.src = src(i); else el.removeAttribute('src'); el.alt = i ? `Page ${i}` : ''; }
+  function label(a, b) {
+    const p = [a, b].filter(Boolean);
+    if (p[0] === 1) return 'Cover';
+    if (p[0] === N) return 'Back cover';
+    return 'Pages ' + p.join(' – ');
+  }
+  function drawSpread() {
+    const [a, b] = spreads[sp];
+    setImg(L, a); setImg(R, b);
+    book.classList.toggle('cover-only', !a); book.classList.toggle('back-only', !b);
+    count.textContent = label(a, b);
+    mark([a, b]);
+  }
+  function drawSingle() {
+    S.src = src(page); S.alt = `Page ${page}`;
+    count.textContent = page === 1 ? 'Cover' : page === N ? 'Back cover' : `Page ${page} of ${N}`;
+    mark([page]);
+  }
+  function mark(pages) {
+    [...thumbs.children].forEach((t, i) => t.classList.toggle('on', pages.includes(i + 1)));
+    const on = thumbs.querySelector('.on'); on && on.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+    $('#prev').disabled = narrow.matches ? page === 1 : sp === 0;
+    $('#next').disabled = narrow.matches ? page === N : sp === spreads.length - 1;
+  }
+
+  function turn(dir) {
+    if (busy) return;
+    if (narrow.matches) {
+      const np = page + dir; if (np < 1 || np > N) return;
+      busy = true;
+      S.classList.add(dir > 0 ? 'out-l' : 'out-r');
+      setTimeout(() => {
+        page = np; S.style.transition = 'none'; S.classList.remove('out-l', 'out-r'); S.classList.add(dir > 0 ? 'out-r' : 'out-l');
+        drawSingle(); void S.offsetWidth; S.style.transition = ''; S.classList.remove('out-l', 'out-r');
+        setTimeout(() => busy = false, 450);
+      }, reduced ? 0 : 280);
+      return;
+    }
+    const ns = sp + dir; if (ns < 0 || ns >= spreads.length) return;
+    const [ca, cb] = spreads[sp], [na, nb] = spreads[ns];
+    if (reduced) { sp = ns; return drawSpread(); }
+    busy = true;
+    leaf.className = 'leaf ' + (dir > 0 ? 'fwd' : 'back');
+    if (dir > 0) { lf.src = src(cb); lb.src = src(na); setImg(R, nb); }
+    else { lf.src = src(ca); lb.src = src(nb); setImg(L, na); }
+    book.classList.remove('cover-only', 'back-only');
+    void leaf.offsetWidth; leaf.classList.add('go');
+    setTimeout(() => { sp = ns; drawSpread(); leaf.className = 'leaf'; busy = false; }, 900);
+  }
+
+  function jump(i) {
+    page = i; sp = spreads.findIndex(s => s.includes(i));
+    narrow.matches ? drawSingle() : drawSpread();
+  }
+
+  for (let i = 1; i <= N; i++) {
+    const b = document.createElement('button');
+    b.innerHTML = `<img src="magazine/pages/${String(i).padStart(2, '0')}_t.jpg" alt="Page ${i}" loading="lazy">`;
+    b.addEventListener('click', () => jump(i));
+    thumbs.appendChild(b);
+  }
+
+  $('#prev').addEventListener('click', () => turn(-1));
+  $('#next').addEventListener('click', () => turn(1));
+  book.addEventListener('click', e => { const r = book.getBoundingClientRect(); turn(e.clientX - r.left > r.width / 2 ? 1 : -1); });
+  $('#single').addEventListener('click', e => { const r = e.currentTarget.getBoundingClientRect(); turn(e.clientX - r.left > r.width / 2 ? 1 : -1); });
+  addEventListener('keydown', e => { if (e.key === 'ArrowRight') turn(1); if (e.key === 'ArrowLeft') turn(-1); });
+  let tx = 0;
+  addEventListener('touchstart', e => tx = e.touches[0].clientX, { passive: true });
+  addEventListener('touchend', e => { const dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 50) turn(dx < 0 ? 1 : -1); });
+  narrow.addEventListener('change', () => jump(narrow.matches ? (spreads[sp][0] || spreads[sp][1]) : page));
+
+  narrow.matches ? drawSingle() : drawSpread();
+})();
+</script>
+</body>
+</html>

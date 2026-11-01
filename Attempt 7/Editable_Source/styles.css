@@ -1,0 +1,234 @@
+/* =====================================================================
+   ATHAY · The Twentieth Issue · Royal Ivory & Gold  (Attempt 6)
+   Page = 8.25 x 11.25 in incl. 0.125 in bleed = 792 x 1080 css px.
+   Trim line sits 12 px inside every edge. Keep text >= 60 px from edges.
+   ===================================================================== */
+
+/* ---------- fonts (all free / OFL, stored in assets/fonts) ---------- */
+@font-face{font-family:'Bodoni Moda';src:url(assets/fonts/bodoni-moda-latin-400-normal.woff2)}
+@font-face{font-family:'Bodoni Moda';font-style:italic;src:url(assets/fonts/bodoni-moda-latin-400-italic.woff2)}
+@font-face{font-family:'Bodoni Moda';font-weight:500;src:url(assets/fonts/bodoni-moda-latin-500-normal.woff2)}
+@font-face{font-family:'Bodoni Moda';font-weight:600;src:url(assets/fonts/bodoni-moda-latin-600-normal.woff2)}
+@font-face{font-family:'Bodoni Moda';font-weight:700;src:url(assets/fonts/bodoni-moda-latin-700-normal.woff2)}
+@font-face{font-family:'Cormorant';src:url(assets/fonts/cormorant-garamond-latin-500-normal.woff2)}
+@font-face{font-family:'Cormorant';font-weight:600;src:url(assets/fonts/cormorant-garamond-latin-600-normal.woff2)}
+@font-face{font-family:'Cormorant';font-style:italic;src:url(assets/fonts/cormorant-garamond-latin-500-italic.woff2)}
+@font-face{font-family:'Cormorant';font-style:italic;font-weight:600;src:url(assets/fonts/cormorant-garamond-latin-600-italic.woff2)}
+@font-face{font-family:'Cinzel';src:url(assets/fonts/cinzel-latin-500-normal.woff2)}
+@font-face{font-family:'Cinzel';font-weight:600;src:url(assets/fonts/cinzel-latin-600-normal.woff2)}
+@font-face{font-family:'Cinzel Deco';src:url(assets/fonts/cinzel-decorative-latin-400-normal.woff2)}
+@font-face{font-family:'Italiana';src:url(assets/fonts/italiana-latin-400-normal.woff2)}
+@font-face{font-family:'Pinyon';src:url(assets/fonts/pinyon-script-latin-400-normal.woff2)}
+@font-face{font-family:'Vibes';src:url(assets/fonts/great-vibes-latin-400-normal.woff2)}
+@font-face{font-family:'Montserrat';src:url(assets/fonts/montserrat-latin-500-normal.woff2)}
+@font-face{font-family:'Montserrat';font-weight:600;src:url(assets/fonts/montserrat-latin-600-normal.woff2)}
+@font-face{font-family:'Tiro Bangla';src:url(assets/fonts/tiro-bangla-bengali-400-normal.woff2)}
+
+/* ---------- palette ---------- */
+:root{
+  --ivory:#FFFDF8; --cream:#FBF5EA; --pearl:#F6EEE1;
+  --blush:#F4D6D4; --rose:#C9868B; --rosedeep:#9E5560;
+  --gold:#B08A3E; --golddk:#7E5E22; --goldlt:#E6CC8E;
+  --ink:#2E2219;       /* body text: 14:1 on ivory */
+  --ink2:#5A4632;      /* secondary text: 8:1 on ivory */
+  --foil:url(assets/foil.jpg);
+}
+
+@page{size:8.25in 11.25in;margin:0}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:#d8d2c8}
+body{font-family:'Cormorant',serif;color:var(--ink);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+
+/* ---------- page shell ---------- */
+.page{position:relative;width:792px;height:1080px;overflow:hidden;margin:30px auto;background:var(--ivory);
+  box-shadow:0 10px 40px rgba(60,40,20,.25);page-break-after:always;break-after:page}
+.page>*{position:absolute}
+body.single{background:var(--ivory)} body.single .page{margin:0;box-shadow:none}
+body.single .page:not(.show){display:none}
+@media print{html,body{background:none}.page{margin:0;box-shadow:none}}
+
+/* paper + ambient light */
+.paper{inset:0;background:var(--ivory) url(assets/paper.jpg) center/cover}
+.paper::before{content:'';position:absolute;inset:0;background:rgba(255,253,248,.55)}
+.paper::after{content:'';position:absolute;inset:0;background:
+  radial-gradient(60% 40% at 85% 8%,rgba(242,214,160,.22),transparent 70%),
+  radial-gradient(55% 40% at 8% 95%,rgba(244,206,206,.22),transparent 70%)}
+.dust{inset:0;background:url(assets/dust.png) center/cover;opacity:.4;mix-blend-mode:multiply;pointer-events:none}
+/* ambient wash: a photo blurred into light, used behind pages */
+.amb{inset:-60px;background-size:cover;background-position:center;filter:blur(46px) saturate(1.1) brightness(1.35);opacity:.09!important}
+.glow{border-radius:50%;filter:blur(30px);opacity:.7}
+.glow.gold{background:radial-gradient(circle,rgba(240,208,140,.9),rgba(240,208,140,0) 70%)}
+.glow.rose{background:radial-gradient(circle,rgba(244,190,195,.9),rgba(244,190,195,0) 70%)}
+.glow.white{background:radial-gradient(circle,rgba(255,255,255,.95),rgba(255,255,255,0) 70%)}
+
+/* thin gold page border + corner flourishes */
+.border{inset:34px;border:1px solid rgba(176,138,62,.55)}
+.border::after{content:'';position:absolute;inset:5px;border:.5px solid rgba(176,138,62,.35)}
+
+/* ---------- typography ---------- */
+.kicker{font:600 9.5px/1 'Montserrat',sans-serif;letter-spacing:.38em;text-transform:uppercase;color:var(--golddk)}
+.h1{font:400 64px/0.95 'Bodoni Moda',serif;color:var(--ink);letter-spacing:-.01em}
+.h2{font:400 44px/1 'Bodoni Moda',serif;color:var(--ink)}
+.script{font-family:'Pinyon',cursive;font-weight:400;color:var(--golddk);line-height:1}
+.vibes{font-family:'Vibes',cursive;color:var(--golddk);line-height:1}
+.foil{background:var(--foil) center/220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 1px 0 rgba(120,90,30,.35))}
+.foil.dark{filter:brightness(.78) contrast(1.15) drop-shadow(0 1px 0 rgba(120,90,30,.3))}
+.body{font:500 14.5px/1.55 'Cormorant',serif;color:var(--ink)}
+.body p+p{margin-top:.6em}
+.body .drop::first-letter{float:left;font:400 58px/0.8 'Bodoni Moda',serif;color:var(--golddk);padding:6px 8px 0 0}
+.italic{font-style:italic}
+.cap{font:italic 500 12.5px/1.3 'Cormorant',serif;color:var(--ink2);text-align:center}
+.label{font:600 8.5px/1 'Montserrat',sans-serif;letter-spacing:.32em;text-transform:uppercase;color:var(--golddk)}
+.quote{font:italic 500 22px/1.3 'Cormorant',serif;color:var(--ink);text-align:center}
+.bn{font-family:'Tiro Bangla',serif}
+.folio{bottom:30px;font:600 8px/1 'Montserrat',sans-serif;letter-spacing:.32em;text-transform:uppercase;color:var(--golddk)}
+.folio.l{left:52px}.folio.r{right:52px}
+.rule{height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.orn{display:flex;align-items:center;justify-content:center;gap:10px;color:var(--gold)}
+.orn::before,.orn::after{content:'';height:1px;width:70px;background:linear-gradient(90deg,transparent,var(--gold))}
+.orn::after{transform:scaleX(-1)}
+.orn i{width:7px;height:7px;transform:rotate(45deg);border:1px solid var(--gold);display:block}
+.white-text{color:#fff!important;text-shadow:0 1px 14px rgba(40,20,10,.55),0 0 2px rgba(40,20,10,.4)}
+
+/* ---------- photo frames ---------- */
+.ph{overflow:hidden;background:#eee}
+.ph img,.fill{width:100%;height:100%;object-fit:cover;display:block}
+/* gallery mat with hairline gold */
+.mat{background:#fff;padding:7px;box-shadow:0 10px 26px -8px rgba(70,45,20,.35),0 0 0 1px rgba(176,138,62,.35)}
+.mat>.ph{position:relative;width:100%;height:100%}
+/* double gold frame */
+.goldframe{padding:9px;background:linear-gradient(135deg,#F3DDA0,#B8913F 30%,#F0D592 55%,#A57B2E 80%,#E7C987);
+  box-shadow:0 14px 30px -10px rgba(70,45,20,.5)}
+.goldframe>.ph{position:relative;width:100%;height:100%;outline:3px solid #fff;outline-offset:-6px}
+/* polaroid */
+.pola{background:#fff;padding:10px 10px 38px;box-shadow:0 12px 24px -8px rgba(60,40,20,.4),0 0 0 1px rgba(0,0,0,.05)}
+.pola>.ph{position:relative;width:100%;height:100%}
+.pola>.pc{position:absolute;left:0;right:0;bottom:9px;text-align:center;font:400 17px/1 'Vibes',cursive;color:var(--ink2)}
+/* washi tape */
+.tape{height:24px;width:92px;background:repeating-linear-gradient(45deg,rgba(244,214,212,.85) 0 8px,rgba(255,250,240,.85) 8px 16px);
+  box-shadow:0 1px 2px rgba(0,0,0,.08);z-index:5}
+.tape.gold{background:linear-gradient(90deg,rgba(230,204,142,.85),rgba(246,232,190,.85),rgba(214,180,110,.85))}
+/* shapes */
+.arch{border-radius:999px 999px 6px 6px}
+.archf{border-radius:999px 999px 0 0}
+.circle{border-radius:50%}
+.oval{border-radius:50%}
+.round{border-radius:18px}
+.heart{clip-path:url(#c-heart)}
+.blob1{clip-path:url(#c-blob1)} .blob2{clip-path:url(#c-blob2)}
+.torn1{clip-path:url(#c-torn1)} .torn2{clip-path:url(#c-torn2)}
+.stampclip{clip-path:url(#c-stamp)}
+.scallop{clip-path:url(#c-scallop)}
+.hex{clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%)}
+.diamond{clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
+.octa{clip-path:polygon(30% 0,70% 0,100% 30%,100% 70%,70% 100%,30% 100%,0 70%,0 30%)}
+/* shape outlines (a gold ring drawn behind the shape) */
+.ring{border:2px solid var(--gold);box-shadow:0 0 0 6px rgba(255,255,255,.9),0 0 0 7px rgba(176,138,62,.6),0 16px 30px -10px rgba(70,45,20,.45)}
+.shadowf{filter:drop-shadow(0 12px 16px rgba(70,45,20,.35))}
+/* soft ambient edge: photo dissolves into the page */
+.soft{-webkit-mask-image:radial-gradient(closest-side,#000 62%,transparent 100%);mask-image:radial-gradient(closest-side,#000 62%,transparent 100%)}
+.softv{-webkit-mask-image:linear-gradient(#000 70%,transparent);mask-image:linear-gradient(#000 70%,transparent)}
+/* rough torn paper wrapper: white paper with torn clip behind the photo */
+.tornpaper{filter:drop-shadow(0 8px 12px rgba(60,40,20,.3))}
+.tornpaper>.paperbg{position:absolute;inset:0;background:#fffdf7}
+.tornpaper>.ph{position:absolute;inset:14px}
+/* postage stamp */
+.stamp{filter:drop-shadow(0 6px 10px rgba(60,40,20,.3))}
+.stamp>.paperbg{position:absolute;inset:0;background:#fffdf7}
+.stamp>.ph{position:absolute;inset:13px}
+.stamp>.val{position:absolute;right:18px;bottom:16px;font:600 13px/1 'Bodoni Moda',serif;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.6)}
+/* photo corners (vintage album) */
+.corners{background:#fff;padding:8px;box-shadow:0 8px 18px -6px rgba(60,40,20,.35)}
+.corners>.ph{position:relative;width:100%;height:100%}
+.corners>b{position:absolute;width:26px;height:26px;background:linear-gradient(135deg,#C9A04E,#EBCB83 60%,#A57B2E);z-index:3}
+.corners>b:nth-of-type(1){left:-4px;top:-4px;clip-path:polygon(0 0,100% 0,0 100%)}
+.corners>b:nth-of-type(2){right:-4px;top:-4px;clip-path:polygon(0 0,100% 0,100% 100%)}
+.corners>b:nth-of-type(3){left:-4px;bottom:-4px;clip-path:polygon(0 0,100% 100%,0 100%)}
+.corners>b:nth-of-type(4){right:-4px;bottom:-4px;clip-path:polygon(100% 0,100% 100%,0 100%)}
+/* film strip (vertical) */
+.film{background:#1d1714;padding:6px 26px;display:flex;flex-direction:column;gap:8px;box-shadow:0 14px 26px -10px rgba(0,0,0,.55)}
+.film::before,.film::after{content:'';position:absolute;top:0;bottom:0;width:12px;
+  background:repeating-linear-gradient(#1d1714 0 6px,#f5efe5 6px 15px,#1d1714 15px 20px)}
+.film::before{left:7px}.film::after{right:7px}
+.film>.ph{position:relative;flex:1}
+.film>.fl{position:absolute;left:4px;bottom:6px;writing-mode:vertical-rl;transform:rotate(180deg);font:600 6px/1 'Montserrat';letter-spacing:.3em;color:#E6CC8E}
+/* horizontal film strip */
+.filmh{background:#1d1714;padding:24px 6px;display:flex;gap:8px;box-shadow:0 14px 26px -10px rgba(0,0,0,.55)}
+.filmh::before,.filmh::after{content:'';position:absolute;left:0;right:0;height:11px;
+  background:repeating-linear-gradient(90deg,#1d1714 0 6px,#f5efe5 6px 15px,#1d1714 15px 20px)}
+.filmh::before{top:6px}.filmh::after{bottom:6px}
+.filmh>.ph{position:relative;flex:1}
+/* camera viewfinder overlay */
+.vf{pointer-events:none}
+.vf>i{position:absolute;width:34px;height:34px;border:2.5px solid rgba(255,255,255,.95);filter:drop-shadow(0 0 2px rgba(0,0,0,.4))}
+.vf>i:nth-of-type(1){left:18px;top:18px;border-right:0;border-bottom:0}
+.vf>i:nth-of-type(2){right:18px;top:18px;border-left:0;border-bottom:0}
+.vf>i:nth-of-type(3){left:18px;bottom:18px;border-right:0;border-top:0}
+.vf>i:nth-of-type(4){right:18px;bottom:18px;border-left:0;border-top:0}
+.vf>.rec{position:absolute;left:30px;top:30px;font:600 10px/1 'Montserrat';letter-spacing:.2em;color:#fff;text-shadow:0 0 3px rgba(0,0,0,.6)}
+.vf>.rec::before{content:'';display:inline-block;width:8px;height:8px;border-radius:50%;background:#E0444E;margin-right:6px;vertical-align:-1px}
+.vf>.info{position:absolute;left:30px;right:30px;bottom:30px;display:flex;justify-content:space-between;font:600 9px/1 'Montserrat';letter-spacing:.18em;color:#fff;text-shadow:0 0 3px rgba(0,0,0,.6)}
+.vf>.focus{position:absolute;left:50%;top:42%;width:64px;height:64px;margin:-32px;border:1.5px solid rgba(255,255,255,.9)}
+.vf>.focus::before,.vf>.focus::after{content:'';position:absolute;background:rgba(255,255,255,.9)}
+.vf>.focus::before{left:50%;top:-8px;bottom:-8px;width:1.5px}
+.vf>.focus::after{top:50%;left:-8px;right:-8px;height:1.5px}
+.vf>.batt{position:absolute;right:30px;top:28px;width:26px;height:12px;border:1.5px solid #fff;border-radius:2px}
+.vf>.batt::after{content:'';position:absolute;inset:2px 4px 2px 2px;background:#fff}
+/* camera body frame (vintage camera drawn in CSS) */
+.camera{background:linear-gradient(#2a221d,#15110e);border-radius:22px;padding:56px 26px 26px;box-shadow:0 18px 30px -12px rgba(0,0,0,.6)}
+.camera::before{content:'';position:absolute;left:30px;top:-14px;width:70px;height:22px;border-radius:6px 6px 0 0;background:#2a221d}
+.camera>.ph{position:relative;width:100%;height:100%;border-radius:6px}
+.camera>.lens{position:absolute;right:28px;top:14px;width:30px;height:30px;border-radius:50%;background:radial-gradient(circle,#6c7b8c,#141a22 60%);border:3px solid #C9A04E}
+.camera>.brand{position:absolute;left:28px;top:22px;font:600 11px/1 'Cinzel';letter-spacing:.3em;color:#E6CC8E}
+/* film roll canister label */
+.roll{font:600 7px/1 'Montserrat';letter-spacing:.3em;color:#E6CC8E}
+/* background-removed cut-out */
+.cut{object-fit:contain;filter:drop-shadow(0 18px 22px rgba(70,45,20,.35))}
+.cut.glowing{filter:drop-shadow(0 0 22px rgba(255,255,255,.95)) drop-shadow(0 18px 24px rgba(70,45,20,.3))}
+.cut.outline{filter:drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(0 10px 18px rgba(70,45,20,.4))}
+.cut.fade{filter:none!important}
+.fade{-webkit-mask-image:linear-gradient(#000 82%,transparent 99%);mask-image:linear-gradient(#000 82%,transparent 99%)}
+/* decorative art */
+.art{pointer-events:none}
+.sp{width:22px;height:22px;background:url(assets/art/sparkle.svg) center/contain no-repeat}
+/* text panels for contrast over photos */
+.panel{background:rgba(255,253,248,.92);box-shadow:0 10px 30px -10px rgba(60,40,20,.35)}
+.panel.line{outline:1px solid rgba(176,138,62,.6);outline-offset:-8px}
+/* number badge */
+.num{font:400 15px/1 'Bodoni Moda';color:var(--golddk)}
+
+/* ---------- wax seal ---------- */
+.seal{width:96px;height:96px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#e6b7b9,#b86b74 55%,#8d4450);
+  box-shadow:inset 0 0 0 6px rgba(255,255,255,.08),inset 0 -6px 10px rgba(0,0,0,.25),0 8px 16px rgba(80,30,30,.35);
+  display:flex;align-items:center;justify-content:center;font:400 30px/1 'Pinyon';color:#fbe9e3;text-shadow:0 -1px 0 rgba(0,0,0,.3)}
+.seal::before{content:'';position:absolute;inset:10px;border-radius:50%;border:1.5px dashed rgba(255,235,230,.45)}
+
+/* ---------- 20 reasons list ---------- */
+.reasons{}
+.reasons li{list-style:none;break-inside:avoid;display:flex;gap:10px;font:500 16.5px/1.32 'Cormorant';margin-bottom:15px;color:var(--ink)}
+.reasons li b{flex:0 0 24px;font:italic 400 18px/1.1 'Bodoni Moda';color:var(--golddk);text-align:right}
+
+/* ---------- contents ---------- */
+.toc{display:grid;grid-template-columns:1fr 1fr;column-gap:40px}
+.toc .sec{font:600 8.5px/1 'Montserrat';letter-spacing:.32em;text-transform:uppercase;color:var(--rosedeep);margin:16px 0 8px;grid-column:span 1}
+.toc .row{display:flex;align-items:baseline;gap:10px;padding:5px 0;border-bottom:1px solid rgba(176,138,62,.25)}
+.toc .row b{font:italic 400 19px/1 'Bodoni Moda';color:var(--golddk);width:28px}
+.toc .row span{font:500 16px/1.1 'Cormorant';color:var(--ink)}
+.toc .row em{margin-left:auto;font:italic 500 12px/1 'Cormorant';color:var(--ink2)}
+
+/* fact file */
+.facts{border:1px solid rgba(176,138,62,.6);background:rgba(255,253,248,.94);padding:18px 20px}
+.facts .r{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(176,138,62,.22)}
+.facts .r:last-child{border:0}
+.facts .r span{font:600 7.5px/1.6 'Montserrat';letter-spacing:.28em;text-transform:uppercase;color:var(--golddk)}
+.facts .r b{font:italic 500 14px/1.2 'Cormorant';color:var(--ink)}
+
+/* chat bubbles (page 17) */
+.chat{display:flex;flex-direction:column;align-items:flex-start;gap:9px}
+.bubble{display:inline-flex;align-items:baseline;gap:9px;padding:6px 15px 7px;border-radius:18px 18px 18px 4px;background:#F8E3E2;
+  font:400 17px/1.3 'Tiro Bangla',serif;color:var(--ink);box-shadow:0 5px 12px -6px rgba(120,60,60,.35)}
+.bubble.r{align-self:flex-end;background:#fff;border:1px solid rgba(176,138,62,.55);border-radius:18px 18px 4px 18px}
+.bubble em{font:italic 500 13px/1 'Cormorant',serif;color:var(--ink2)}
+.letter p+p{margin-top:.55em}

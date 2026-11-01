@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 300"><defs>
+<linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F3DDA0"/><stop offset=".45" stop-color="#C9A04E"/><stop offset=".7" stop-color="#EBCB83"/><stop offset="1" stop-color="#A57B2E"/></linearGradient>
+</defs>
+<g stroke="#B08A3E" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+<path d="M40,210 C30,170 60,160 110,162 L310,162 C360,160 390,170 380,210 C390,250 360,262 310,260 L110,260 C60,262 30,250 40,210Z" fill="#F7DCDB"/>
+<path d="M60,205 Q210,232 362,205" fill="none" stroke-width="1.6"/>
+<circle cx="130" cy="212" r="4" fill="url(#gold)" stroke-width="1"/><circle cx="210" cy="220" r="4" fill="url(#gold)" stroke-width="1"/><circle cx="290" cy="212" r="4" fill="url(#gold)" stroke-width="1"/>
+<path d="M40,170 l-20,-14 M40,252 l-20,14 M380,170 l20,-14 M380,252 l20,14" stroke-width="3"/>
+<path d="M14,150 l10,10 l-10,8Z M14,270 l10,-10 l-10,-8Z M406,150 l-10,10 l10,8Z M406,270 l-10,-10 l10,-8Z" fill="url(#gold)" stroke-width="1.5"/>
+<path d="M300,176 C340,176 352,140 330,124 C316,114 302,128 316,136" fill="none" stroke-width="20"/>
+<path d="M300,176 C340,176 352,140 330,124 C316,114 302,128 316,136" fill="none" stroke="#FFFBF5" stroke-width="14"/>
+<path d="M120,180 C110,120 170,96 230,100 C290,104 320,130 316,176 C300,188 140,190 120,180Z" fill="#FFFBF5"/>
+<path d="M98,104 L92,58 L128,84Z M168,92 L178,48 L198,88Z" fill="#FFFBF5"/>
+<path d="M101,96 L98,70 L118,86Z M174,86 L180,62 L190,86Z" fill="#F4CFCD" stroke-width="1.4"/>
+<ellipse cx="140" cy="128" rx="54" ry="46" fill="#FFFBF5"/>
+<path d="M112,128 Q120,136 128,128 M150,128 Q158,136 166,128" fill="none" stroke-width="3"/>
+<ellipse cx="108" cy="144" rx="9" ry="5" fill="#F4BDBD" stroke="none"/><ellipse cx="170" cy="144" rx="9" ry="5" fill="#F4BDBD" stroke="none"/>
+<path d="M134,140 L146,140 L140,146Z" fill="#E3A1A5" stroke-width="1.8"/>
+<path d="M140,146 Q136,153 130,150 M140,146 Q144,153 150,150" fill="none" stroke-width="2"/>
+<path d="M188,74 L170,62 L172,86Z M188,74 L206,62 L204,86Z" fill="#EBB3B8" stroke-width="2"/><circle cx="188" cy="74" r="5" fill="url(#gold)" stroke-width="1.5"/>
+<ellipse cx="128" cy="176" rx="18" ry="9" fill="#FFFBF5"/><ellipse cx="162" cy="178" rx="18" ry="9" fill="#FFFBF5"/>
+<text x="250" y="96" font-family="Georgia,serif" font-style="italic" font-size="22" fill="url(#gold)" stroke="none">z</text>
+<text x="268" y="74" font-family="Georgia,serif" font-style="italic" font-size="28" fill="url(#gold)" stroke="none">z</text>
+</g></svg>
